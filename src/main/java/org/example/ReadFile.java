@@ -34,12 +34,11 @@ public class ReadFile {
     private void readInLie(String line) {
         System.out.println(line);
         if (Pattern.matches("[A-Z]{1}.+[A-Z]{1}.+", line)) {
-            String[] lines = line.split("->");
+            String[] lines = line.split(" -> ");
 
 // проверяем есть ли уже в листе такой обьект
             boolean b = isInElements(new Node(lines[0]));
 //            Если элеиннта нет, то добавляем
-
 
             if(!b) {
                 Node node = createNode(lines[0], lines[1]);
