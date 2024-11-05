@@ -6,10 +6,7 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Pattern;
 
 public class ReadFile {
@@ -76,11 +73,27 @@ public class ReadFile {
 
 
     }
-//Создаем новый объект
-    private Node createNode(String source, String result) {
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        ReadFile readFile = (ReadFile) object;
+        return Objects.equals(firstElement, readFile.firstElement);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstElement);
+    }
+
+    //Создаем новый объект
+    public Node createNode(String source, String result) {
         Node sourceNode = new Node(source);
-        Node resulNode = new Node(result);
-        sourceNode.setResultOne(resulNode);
+        if (result != null) {
+            Node resulNode = new Node(result);
+            sourceNode.setResultOne(resulNode);
+        }
         return sourceNode;
     }
     private boolean isInElements(Node node){
