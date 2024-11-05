@@ -5,6 +5,7 @@ public class Main {
         ReadFile readFile = new ReadFile();
         readFile.readFile();
 //        System.out.println(System.getProperty("user.dir"));
-        readFile.printElements();
+//        readFile.printElements();
+        System.out.println(readFile.qtySteps());
     }
 }

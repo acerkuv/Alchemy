@@ -29,8 +29,6 @@ public class Node {
         return resultOne;
     }
 
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

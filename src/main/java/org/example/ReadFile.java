@@ -14,6 +14,8 @@ import java.util.regex.Pattern;
 
 public class ReadFile {
     String fileName;
+    String firstElement;
+    String resultElement;
    List<Node> elements = new ArrayList<>();
 
     public void readFile() {
@@ -31,8 +33,16 @@ public class ReadFile {
 
     }
 
+    public void setFirstElement(String firstElement) {
+        this.firstElement = firstElement;
+    }
+
+    public void setResultElement(String resultElement) {
+        this.resultElement = resultElement;
+    }
+
     private void readInLie(String line) {
-        System.out.println(line);
+
         if (Pattern.matches("[A-Z]{1}.+[A-Z]{1}.+", line)) {
             String[] lines = line.split(" -> ");
 
@@ -50,9 +60,15 @@ public class ReadFile {
                 assert node != null;
                 node.setResultTwo(new Node(lines[1]));
             }
+// Элементы задания из которого в какой нужно пройти
+        } else if (Pattern.matches("[A-Z]{1}.+", line)) {
+            if (firstElement==null){
+                firstElement = line;
 
+            }else {
+                resultElement = line;
+            }
         }
-
 
 
     }
@@ -77,5 +93,35 @@ public class ReadFile {
     public void printElements(){
         for(Node n: elements) System.out.println(n.toString());
     }
+    public int qtySteps(){
+        int steps = 0;
+        Node first =  getNodeFromElements(firstElement);
+        Node result = getNodeFromElements(resultElement);
 
-}
+//        Правый обход
+        Node currentNode = first;
+        while (true){
+            assert currentNode != null;
+            if(currentNode.getResultOne().equals(result)) {
+                return steps++;
+
+
+            }
+// проверка достижения конца уепочки
+            else if (currentNode.sourceElement==null) {
+                    break;
+            } else {
+                currentNode = currentNode.getResultOne();
+
+                }
+
+            }
+        return steps;
+        }
+
+
+    }
+
+
+
+
