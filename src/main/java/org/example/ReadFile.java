@@ -18,9 +18,13 @@ public class ReadFile {
     String resultElement;
    List<Node> elements = new ArrayList<>();
 
+    public ReadFile(String fileName) {
+        this.fileName = fileName;
+    }
+
     public void readFile() {
 
-        File file = new File("amchemy.txt");
+        File file = new File(fileName);
         Charset charset = StandardCharsets.US_ASCII;
         try (BufferedReader reader = Files.newBufferedReader(file.toPath(), charset)) {
             String line = null;
@@ -102,10 +106,9 @@ public class ReadFile {
         Node currentNode = first;
         while (true){
             assert currentNode != null;
-            if(currentNode.getResultOne().equals(result)) {
-                return steps++;
-
-
+            if(currentNode.getResultTwo().equals(result) || currentNode.getResultOne().equals(result)) {
+                steps++;
+                break;
             }
 // проверка достижения конца уепочки
             else if (currentNode.sourceElement==null) {
@@ -118,6 +121,7 @@ public class ReadFile {
             }
         return steps;
         }
+
 
 
     }
