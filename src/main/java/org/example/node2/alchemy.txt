@@ -1,0 +1,10 @@
+6
+Aqua -> AquaVita
+AquaVita -> PhilosopherStone
+PhilosopherStone -> Argentum
+AquaVita -> Argentum
+Argentum -> Aurum
+AquaVita -> Aurum
+Aurum -> Oxygen
+Aqua
+Oxygen
