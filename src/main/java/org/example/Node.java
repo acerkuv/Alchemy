@@ -30,11 +30,16 @@ public class Node {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Node node = (Node) o;
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        Node node = (Node) object;
         return Objects.equals(sourceElement, node.sourceElement);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(sourceElement);
     }
 
     @Override
@@ -46,8 +51,5 @@ public class Node {
                 '}';
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(sourceElement);
-    }
+
 }
